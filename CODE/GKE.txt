@@ -1,0 +1,27 @@
+#GOOGLE CLOUD FUNDAMENTALS: Getting Started with GKE
+#Task 2: Confirm that the APIs are enabled
+1. gcloud services list --enabled
+#Task 3: Start a Kubernetes Engine cluster
+1.Export your region to us-central
+- export MY_ZONE=us-central1-a
+2. Start a Kubernetes cluster managed by Kubernetes Engine. Name the cluster webfrontend and configure it to run 2 nodes:
+-  gcloud container clusters create webfrontend --zone $MY_ZONE --num-nodes 2
+3. check your installed version of Kubernetes using the kubectl version command:
+-  kubectl version
+4. Check your number of nodes
+-  kubectl get nodes
+TASK 4
+1. From your Cloud Shell prompt, launch a single instance of the nginx container.
+- kubectl create deploy nginx --image=nginx:1.17.
+2. View the pod running the nginx container
+-  Kubectcl get pods
+3. Expose the nginx container to the internet
+-  kubectl expose deployment nginx --port 80 --type LoadBalancer
+4.   view the service
+-   kubectl get services
+5. Scale up the number of pods running on your service
+-  kubectl scale deployment nginx --replicas 3
+6. Confirm that Kubernetes has updated the number of pods
+-  kubectl get pods
+7.  Confirm that your external IP address has not changed
+-  kubectl get services
